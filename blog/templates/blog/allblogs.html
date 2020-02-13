@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Ben's Portfolio</title>
+    <title>Ben's Blog</title>
 
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -54,45 +54,30 @@
     <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" target="_blank" href="https://www.facebook.com/Abdukarimov15">Facebook</a>
       <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-      <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+      <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
     </div>
   </div>
 </nav>
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
     <div class="container">
-      <h1>Hi, I am Ben</h1>
-      <p class="lead text-muted">Hey, my name is Ben and I like to make Django websites, fully operative and responsive!</p>
-      <p>
-        <a href="mailto:abunyod@gmail.com" class="btn btn-primary my-2">Email Me</a>
-      </p>
-      <img src="{% static 'pic.jpg' %}" height="300">
-    </div>
-  </section>
+        <h1 class="text-center pt-3">Welcome to Ben's Blog</h1>
+      <br>
+      <br>
+      <h2>Latest Posts</h2>
+        <hr>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="bd-placeholder-img card-img-top" src="{{ job.image.url }}">
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
+        {% for blog in blogs.all %}
+        <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+        {{ blog.pub_date_pretty }}
+        <br>
+        <img class="img-fluid" height="200" width="200" src="{{ blog.image.url }}">
+        <br>
+        <p>{{ blog.summary }}</p>
         {% endfor %}
 
-      </div>
     </div>
-  </div>
-
 </main>
 
 <footer class="text-muted">
